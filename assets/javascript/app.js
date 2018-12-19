@@ -127,10 +127,11 @@ var clockRunning = false;
 var unanswered
 var correctAnswer
 var incorrectAnswer
+var restart
 
 //reset timer
     function resetTimer() {
-        timer = 30;
+        timer = 20;
         //reset display
         $(".timerDisplay").text("");
     }
@@ -138,11 +139,17 @@ var incorrectAnswer
 //start timer
     function startTimer() {
         if (!clockRunning) {
+            timer = 20;
             intervalId = setInterval(countdown, 1000);
             running = true;
             $(".timerDisplay").text("Time Remaining: " + timer);
             alert("setting timer!");
         }
+    }
+
+//stop timer
+    function stopTimer() {
+        clearInterval(intervalId)
     }
 
 //timer countdown
@@ -151,9 +158,10 @@ var incorrectAnswer
         timer --;
         
         //stop once timer hits 0
-	    if (timer === 0) {
-            stop();
+	    if (timer < 0) {
+            stopTimer();
             unanswered++;
+            newQ();
 	    }	
     };
 
@@ -173,6 +181,8 @@ var incorrectAnswer
         $("#ac4").append(randomQ.choice[3]);
     };
 
+
+
 //when radio button is selected
     //if radio button id = answer id, then..
     function checkAnswer() {
@@ -184,21 +194,50 @@ var incorrectAnswer
 
             if(radioValue == randomQ.answer) {
                 isCorrect = true;
+                stopTimer();
                 alert("you're right!");
+                newQ();
             }
 
             else {
                 isIncorrect = true;
+                stopTimer();
                 alert("wrong answer!");
+                newQ();
+               
             };
     
         });
 
     }
-   
 
 
-//prevent repeats
+//start new game by setting timeout and then calling reset function
+    function newQ() {
+        if (isCorrect || isIncorrect || unanswered) {
+            restart = setTimeout(reset(), 4000);
+            
+        }
+    }
+
+//reset display function
+    function resetDisplay() {
+        $(".QA").text("");
+        $("input[type='radio']").removeAttr("checked");
+        $('input[type=radio]').prop('checked',false);
+    };
+
+//reset function
+    function reset() {
+        resetDisplay();
+        getRandomQ();
+        displayRandomQ();
+        resetTimer();
+        startTimer();
+        countdown();
+        checkAnswer();
+    };
+
 
 
 //game starts
@@ -207,20 +246,15 @@ var incorrectAnswer
     
     //on Begin click
         $(".begin").click(function() {
-            //begin text disappears
-            $(".begin").text("");
-            //computer chooses a question   
+            $(".begin").text(""); 
             getRandomQ();
-            //display questions and answer choices
             displayRandomQ();
-            //call countdown
             startTimer();
             countdown();
-            //check if answer is correct
             checkAnswer();
-     
-       
         });
+        
+       
 
     
         //trivia question pops up
