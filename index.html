@@ -8,10 +8,12 @@
     <title>Magical Trivia</title>
 
     <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
+    <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- link to fonts, etc. here -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|El+Messiri|Merienda" rel="stylesheet">
 
 
   </head>
@@ -23,11 +25,11 @@
         <h1 class="display-4">Magical Trivia</h1>
         <p class="lead">Test your pop culture fantasy knowledge!</p>
         <p>How magical are you?</p>
-      </div>
+    </div>
 
 
     <!--Question Box-->
-    <div class="card">
+    <div class="card col-md-8 offset-2">
       <div class="card-body">
         
         <!--Click to Begin div-->
@@ -36,11 +38,11 @@
         </div>
 
         <!--Answer Buttons-->
-        <div class="row col-md-6 offset-3 questions">
+        <div class="row questions">
             <div class="QA"></div>
         </div>
 
-        <div class="row col-md-6 offset-3 gameOver"></div>
+        <div class="row gameOver"></div>
             <!--Scoreboard-->
             <div class="scoreboard">
                 <p id="correct"></p>
@@ -53,30 +55,32 @@
 
             <!--Wrong Answer!-->
         
+            <!--Answer Radio Buttons-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="answerChoice">
+        
+                        <div>
+                            <input type="radio" id="radio-btn" name="answer" value="0">
+                            <label for="ac1" id="ac1"></label>
+                        </div>
+                        
+                        <div>
+                            <input type="radio" id="radio-btn" name="answer" value="1">
+                            <label for="ac2" id="ac2"></label>
+                        </div>
+                    
+                        <div>
+                            <input type="radio" id="radio-btn" name="answer" value="2">
+                            <label for="ac3" id="ac3"></label>
+                        </div>
 
-            <div class="row col-md-6 offset-3">
-                <div class="answerChoice">
-
-                    <div>
-                        <input type="radio" id="radio-btn" name="answer" value="0">
-                        <label for="ac1" id="ac1"></label>
+                        <div>
+                            <input type="radio" id="radio-btn" name="answer" value="3">
+                            <label for="ac4" id="ac4"></label>
+                        </div>
+                    
                     </div>
-
-                    <div>
-                        <input type="radio" id="radio-btn" name="answer" value="1">
-                        <label for="ac2" id="ac2"></label>
-                    </div>
-
-                    <div>
-                        <input type="radio" id="radio-btn" name="answer" value="2">
-                        <label for="ac3" id="ac3"></label>
-                    </div>
-
-                    <div>
-                        <input type="radio" id="radio-btn" name="answer" value="3">
-                        <label for="ac4" id="ac4"></label>
-                    </div>
-
                 </div>
             </div>
 

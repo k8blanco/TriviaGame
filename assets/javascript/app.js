@@ -144,7 +144,7 @@ var totalRounds = 0;
             timer = 20;
             intervalId = setInterval(countdown, 1000);
             running = true;
-            $(".timerDisplay").text("Time Remaining: " + timer);
+            $(".timerDisplay").text("Time Remaining:   " + timer);
         }
     }
 
@@ -155,7 +155,7 @@ var totalRounds = 0;
 
 //timer countdown
     function countdown() {
-        $(".timerDisplay").text("Time remaining: " + timer);
+        $(".timerDisplay").text("Time remaining:   " + timer);
         timer --;
         
         //stop once timer hits 0

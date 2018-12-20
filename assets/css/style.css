@@ -1,26 +1,43 @@
-/* CSS Stylesheet - Magical Trivia */
+/* Magical Trivia CSS */
 
-
-/* h1 {
-
-}
-
-jumbotron {
-
-}
 
 body {
-   
+      background-image: url("../images/starrynight.jpeg");
+}
+
+.jumbotron {
+      background: rgb(27,45,86); /* for browsers without RGBA support */
+      background: rgba(27,45,86,0.35); 
+      color: white;
+      text-align: center;
+}
+
+.card {
+      background:rgb(27,45,86); /* for browsers without RGBA support */
+      background: rgba(27,45,86,0.35);
+      color: white;
+      font-family: 'El Messiri', sans-serif;
+      font-size: 25px;
+      text-align: center;
+}
+
+
+p {
+   font-family: 'El Messiri', sans-serif;
+   font-size: 16px;
+}
+
+h1 {
+   font-family: 'Amatic SC', cursive;
+   font-size: 50px;
 }
 
 h2 {
-
+   font-family: 'El Messiri', sans-serif;
+   font-size: 30px;
 }
 
-h3 {
-
+.timerDisplay {
+   font-size: 40px;
 }
 
-body {
-
-} 
