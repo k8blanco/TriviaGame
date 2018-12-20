@@ -118,18 +118,16 @@ var questions = [
 
 
 //create variables 
-var randomQ;
-var timer; 
-var intervalId;
+var randomQ
+var timer 
+var intervalId
 var isCorrect = false;
 var isIncorrect = false;
 var clockRunning = false;
-var unanswered = 0;
-var correctAnswer = 0;
-var incorrectAnswer = 0;
-var missedAnswer = 0;
-var restart;
-var totalRounds = 0;
+var unanswered
+var correctAnswer
+var incorrectAnswer
+var restart
 
 //reset timer
     function resetTimer() {
@@ -144,7 +142,8 @@ var totalRounds = 0;
             timer = 20;
             intervalId = setInterval(countdown, 1000);
             running = true;
-            $(".timerDisplay").text("Time Remaining:   " + timer);
+            $(".timerDisplay").text("Time Remaining: " + timer);
+            alert("setting timer!");
         }
     }
 
@@ -155,7 +154,7 @@ var totalRounds = 0;
 
 //timer countdown
     function countdown() {
-        $(".timerDisplay").text("Time remaining:   " + timer);
+        $(".timerDisplay").text("Time remaining: " + timer);
         timer --;
         
         //stop once timer hits 0
@@ -173,7 +172,7 @@ var totalRounds = 0;
 
 //display random question and answers from array
     function displayRandomQ() {
-        $(".QA").text(randomQ.question);
+        $(".QA").text(randomQ.question)
 
         //display answer choices with radio buttons
         $("#ac1").append(randomQ.choice[0]);
@@ -182,87 +181,50 @@ var totalRounds = 0;
         $("#ac4").append(randomQ.choice[3]);
     };
 
+
+
 //when radio button is selected
     //if radio button id = answer id, then..
     function checkAnswer() {
+
         $("input[type='radio']").click(function(){
             var radioValue = $(this).val();
+            alert("you chose " + radioValue)
+            alert(randomQ.answer)
 
             if(radioValue == randomQ.answer) {
                 isCorrect = true;
-                correctAnswer++;
                 stopTimer();
+                alert("you're right!");
                 newQ();
-
             }
+
             else {
                 isIncorrect = true;
-                incorrectAnswer++;
                 stopTimer();
-                newQ(); 
-                randomQ.answer
-            };  
-
-            //game over
-            if (totalRounds === 10) {
-               gameOver();
+                alert("wrong answer!");
+                newQ();
+               
             };
+    
         });
+
     }
-//function for game over
-    function gameOver() {
-        //display scoreboard
-        scoreboard();
-        //hide QA
-        $(".QA").hide();
-        //stop timer
-        stopTimer();
-        //reset & hide radios
-        $(".answerChoice").hide();
-        $(".timerDisplay").hide();
-        $("input[type='radio']").removeAttr("checked");
-        $('input[type=radio]').prop('checked',false);
-
-    };
-
-//create scoreboard
-    function scoreboard() {
-        $(".gameOver").html("<h1>Game Over!</h1>");
-        $("#correct").text("Correct Answers: " + correctAnswer);
-        $("#incorrect").text("Incorrect Answers: " + incorrectAnswer);    
-        $("#missed").text("Unanswered: " + unanswered);   
-
-        if (totalRounds === 10) {
-            $(".gameOver").show();
-            $("#correct").show();
-            $("#incorrect").show();    
-            $("#missed").show();   
-        }
-    };
-
-
-
-
-//function if wrong - display correct answer, set timeout, etc.
 
 
 //start new game by setting timeout and then calling reset function
     function newQ() {
-            restart = setTimeout(reset(), 6000);
-            totalRounds++;
-    };
+        if (isCorrect || isIncorrect || unanswered) {
+            restart = setTimeout(reset(), 4000);
+            
+        }
+    }
 
 //reset display function
     function resetDisplay() {
-        //reset QA text
         $(".QA").text("");
-
-        //uncheck radio buttons
         $("input[type='radio']").removeAttr("checked");
         $('input[type=radio]').prop('checked',false);
-
-        //empty divs
-        $("#ac1, #ac2, #ac3, #ac4").empty();
     };
 
 //reset function
@@ -273,37 +235,25 @@ var totalRounds = 0;
         resetTimer();
         startTimer();
         countdown();
+        checkAnswer();
     };
+
 
 
 //game starts
     $(document).ready(function() {
-        $(".answerChoice").hide();
     
     
-    //on begin click
+    //on Begin click
         $(".begin").click(function() {
             $(".begin").text(""); 
-            $(".answerChoice").show();
             getRandomQ();
             displayRandomQ();
             startTimer();
             countdown();
             checkAnswer();
         });
-    
-    //new game click
-        $(".newgame").click(function() {
-            $(".gameOver", ".scoreboard", ".newgame").hide();
-            getRandomQ();
-            displayRandomQ();
-            startTimer();
-            countdown();
-            checkAnswer();
-        });
-
-    
-    
+        
        
 
     
