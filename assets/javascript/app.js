@@ -14,6 +14,7 @@ var missedAnswer = 0;
 var restart
 var totalRounds = 0;
 var usedQ = [];
+var gameEnd = false;
 
 //Game object
 game = {
@@ -129,6 +130,7 @@ game = {
     gameOver: function() {
         this.scoreboard();
         this.stopTimer();
+        // this.clearTimeout();
         $(".QA").hide();
         $(".answerChoice").hide();
         $(".timerDisplay").hide();
@@ -232,9 +234,14 @@ game = {
     },
 
     newQ: function() {
-        setTimeout(function(){game.reset();}, 1000);
-        totalRounds++;
+        // setTimeout(function(){game.reset();}, 1000);
+        totalRounds++;   
+        this.reset();    
     },
+
+    // stopTimeout: function() {
+    //     clearTimeout();
+    //   },
 
     reset: function() {
         this.resetDisplay();
